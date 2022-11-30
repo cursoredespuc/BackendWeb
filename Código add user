@@ -1,0 +1,2 @@
+#!bin/bash
+samba-tool user add $1 $2 --given-name=$3 --surname=$4 --mail-adress=$5 --login-shell=/bin/bash
