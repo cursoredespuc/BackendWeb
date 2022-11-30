@@ -1,0 +1,38 @@
+app.MapGet("/configura/{nomeUsuario}/{senha}/{primeiroNome}/{sobrenome}/{email}", async context =>
+
+                {
+
+                    var nomeUsuario = context.Request.RouteValues["nomeUsuario"];
+
+                    var senha = context.Request.RouteValues["senha"];
+
+                    var primeiroNome = context.Request.RouteValues["primeiroNome"];
+
+                    var sobreNome = context.Request.RouteValues["sobreNome"];
+
+                    var email = context.Request.RouteValues["email"];
+
+                    string comando = $"/home/grupo2/Documentos/user.sh {nomeUsuario} {senha} {primeiroNome} {sobreNome} {email}"
+
+                    System.Diagnostics.ProcessStartInfo process = new System.Diagnostics.ProcessStartInfo();
+
+                    process.UseShellExecute = false;
+
+                    process.WorkingDirectory = "/bin";
+
+                    process.FileName = "sh";
+
+                    process.Arguments = comando;
+
+                    process.RedirectStandardOutput = true;
+
+
+
+                    System.Diagnostics.Process cmd =  System.Diagnostics.Process.Start(process);
+
+                    cmd.WaitForExit();
+
+
+
+
+                });
